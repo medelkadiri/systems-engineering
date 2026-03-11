@@ -4,20 +4,20 @@ A set of small C++17 projects: allocators, concurrent data structures, and utili
 
 # Projects
 
-| [async-logger](system_engineering_test/project/async-logger/) | Asynchronous logger with lock-free queue and dedicated logging thread |
-| [bounded-queue](bounded-queue/) | Thread-safe bounded blocking queue (condition variables + mutex) |
-| [copy-on-write-string](copy-on-write-string/) | Copy-on-write string with shared memory and deep copy on mutation |
-| [custom-function](custom-function/) | Type-erased callable wrapper with small-buffer optimization |
-| [fd-wrapper](fd-wrapper/) | RAII wrapper for POSIX file descriptors (move-only, exception-safe) |
-| [hash-map](hash-map/) | Hash map with open addressing or chaining, rehashing, iterator validity |
-| [lock-free-stack](lock-free-stack/) | Lock-free stack with CAS and ABA mitigation (e.g. version tagging) |
-| [lru-cache](lru-cache/) | Thread-safe LRU cache, O(1) get/put (hash map + doubly linked list) |
-| [memory-pool](memory-pool/) | Fixed-size memory pool allocator, O(1) alloc/free, alignment |
-| [ring-buffer](ring-buffer/) | Lock-free SPSC ring buffer for low-latency single producer/consumer |
-| [singleton-dcl](singleton-dcl/) | Double-checked locking singleton with C++11 atomics |
-| [spin-lock](spin-lock/) | Spin lock using `atomic_flag`; compare with mutex and benchmark |
-| [thread-pool](thread-pool/) | Thread pool with task submission, graceful shutdown, work stealing |
-| [vector-impl](vector-impl/) | Simplified `Vector<T>`: dynamic buffer, reserve, resize, copy/move |
+- **async-logger**: Asynchronous logger with lock-free queue and dedicated logging thread.
+- **bounded-blocking-queue**: Thread-safe bounded blocking queue (condition variables + mutex).
+- **cow-string**: Copy-on-write string with shared memory and deep copy on mutation.
+- **type-erased-callable**: Type-erased callable wrapper with small-buffer optimization.
+- **fd-wrapper**: RAII wrapper for POSIX file descriptors (move-only, exception-safe).
+- **hash-map**: Hash map with open addressing or chaining, rehashing, iterator validity.
+- **lock-free-stack**: Lock-free stack with CAS and ABA mitigation (e.g. version tagging).
+- **lru-cache**: Thread-safe LRU cache, O(1) get/put (hash map + doubly linked list).
+- **fixed-pool-allocator**: Fixed-size memory pool allocator, O(1) alloc/free, alignment.
+- **spsc-ring-buffer**: Lock-free SPSC ring buffer for low-latency single producer/consumer.
+- **double-checked-singleton**: Double-checked locking singleton with C++11 atomics.
+- **spin-lock**: Spin lock using `atomic_flag`; compare with mutex and benchmark.
+- **work-stealing-thread-pool**: Thread pool with task submission, graceful shutdown, work stealing.
+- **dynamic-vector**: Simplified `Vector<T>`: dynamic buffer, reserve, resize, copy/move.
 
 ## Requirements
 
