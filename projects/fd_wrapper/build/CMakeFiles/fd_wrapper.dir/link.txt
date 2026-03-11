@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfd_wrapper.a CMakeFiles/fd_wrapper.dir/src/fd_wrapper.cpp.o
+/usr/bin/ranlib libfd_wrapper.a
