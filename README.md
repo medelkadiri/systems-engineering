@@ -2,9 +2,9 @@
 
 A set of small C++17 projects: allocators, concurrent data structures, and utilities. Each subdirectory is one project, build and run from inside that directory.
 
-| Project | Description |
+# Projects
 
-| [async-logger](async-logger/) | Asynchronous logger with lock-free queue and dedicated logging thread |
+| [async-logger](system_engineering_test/project/async-logger/) | Asynchronous logger with lock-free queue and dedicated logging thread |
 | [bounded-queue](bounded-queue/) | Thread-safe bounded blocking queue (condition variables + mutex) |
 | [copy-on-write-string](copy-on-write-string/) | Copy-on-write string with shared memory and deep copy on mutation |
 | [custom-function](custom-function/) | Type-erased callable wrapper with small-buffer optimization |
