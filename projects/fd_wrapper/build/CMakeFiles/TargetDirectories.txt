@@ -1,6 +1,0 @@
-/home/mohammed/systems-engineering/projects/fd_wrapper/build/CMakeFiles/fd_wrapper.dir
-/home/mohammed/systems-engineering/projects/fd_wrapper/build/CMakeFiles/fd_wrapper_demo.dir
-/home/mohammed/systems-engineering/projects/fd_wrapper/build/CMakeFiles/fd_wrapper_tests.dir
-/home/mohammed/systems-engineering/projects/fd_wrapper/build/CMakeFiles/test.dir
-/home/mohammed/systems-engineering/projects/fd_wrapper/build/CMakeFiles/edit_cache.dir
-/home/mohammed/systems-engineering/projects/fd_wrapper/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,75 @@
+# Build directories
+build/
+**/build/
+out/
+**/out/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+compile_commands.json
+CTestConfiguration.ini
+
+# Compiled objects and binaries
+*.o
+*.obj
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+*.ilk
+*.pdb
+*.exp
+*.lib
+
+# Test / CTest
+Testing/
+CTestTestfile.cmake
+CTestCostData.txt
+LastTest.log
+
+# Coverage and profiling
+*.gcno
+*.gcda
+*.gcov
+*.log
+*.profdata
+*.profraw
+
+# Package managers 
+conaninfo.txt
+conanbuildinfo.*
+vcpkg_installed/
+
+# IDE and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-*
+.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Nested .git (e.g. fd-wrapper as standalone repo)
+fd-wrapper/.git/
+fd-wrapper/.git.bak/
+
+# Sanitizer / debug
+*.tsan
+*.asan
+*.ubsan
+

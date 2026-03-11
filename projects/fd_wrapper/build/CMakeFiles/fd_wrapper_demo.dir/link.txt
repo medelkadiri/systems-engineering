@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/fd_wrapper_demo.dir/src/demo.cpp.o -o fd_wrapper_demo  libfd_wrapper.a 
