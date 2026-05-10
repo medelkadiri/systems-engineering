@@ -15,6 +15,6 @@ target_link_libraries(fd_wrapper_demo PRIVATE fd_wrapper)
 
 # Tests (always built, registered for ctest)
 enable_testing()
-add_executable(fd_wrapper_tests tests/fd_wrapper_tests.cpp)
+add_executable(fd_wrapper_tests tests/unit/test_fd_wrapper.cpp)
 target_link_libraries(fd_wrapper_tests PRIVATE fd_wrapper)
 add_test(NAME fd_wrapper_tests COMMAND fd_wrapper_tests)

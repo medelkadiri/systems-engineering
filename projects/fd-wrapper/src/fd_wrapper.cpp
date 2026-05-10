@@ -32,19 +32,32 @@ void log_close_failure_impl() noexcept {
 } // namespace
 
 // -----------------------------------------------------------------------------
+// Validation
+// -----------------------------------------------------------------------------
+
+bool fd_wrapper::is_valid_fd_value(int fd) noexcept {
+    return fd >= 0 && fd <= MAX_VALID_FD;
+}
+
+// -----------------------------------------------------------------------------
 // Constructors / destructor
 // -----------------------------------------------------------------------------
 
 fd_wrapper::fd_wrapper(const char* path) {
     int result = ::open(path, O_RDONLY | O_CLOEXEC);
-    if (result >= 0)
+    if (is_valid_fd_value(result)) {
         fd = result;
-    else
+    } else {
+        if (result >= 0) {
+            // Kernel returned valid fd above our safety limit. Close to avoid leak.
+            close_fd(result);
+        }
         fd = INVALID;
+    }
 }
 
 fd_wrapper::fd_wrapper(int fd) noexcept {
-    if (fd >= 0)
+    if (is_valid_fd_value(fd))
         this->fd = fd;
     else
         this->fd = INVALID;
@@ -123,6 +136,12 @@ std::optional<fd_wrapper> fd_wrapper::open(const char* path) {
     int result = ::open(path, O_RDONLY | O_CLOEXEC);
     if (result < 0)
         return std::nullopt;
+
+    if (!is_valid_fd_value(result)) {
+        close_fd(result);
+        return std::nullopt;
+    }
+
     return fd_wrapper(result);
 }
 

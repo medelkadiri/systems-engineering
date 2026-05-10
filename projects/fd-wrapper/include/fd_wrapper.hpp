@@ -13,6 +13,21 @@ class fd_wrapper {
 public:
     static constexpr int INVALID = -1;
 
+    /// Upper bound for valid fd values. Platform-specific for maximum
+    /// security. Any fd above this is rejected as corrupted data.
+    ///
+    /// Tighter bounds catch corruption earlier. Each platform uses
+    /// its own kernel maximum as the ceiling.
+#if defined(__linux__)
+    static constexpr int MAX_VALID_FD = 1 << 20;   // 1,048,576 (Linux /proc/sys/fs/nr_open)
+#elif defined(__APPLE__) && defined(__MACH__)
+    static constexpr int MAX_VALID_FD = 10 << 20;  // 10,485,760 (macOS kern.maxfilesperproc max)
+#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__)
+    static constexpr int MAX_VALID_FD = 1 << 20;   // 1,048,576 (BSD default)
+#else
+    #error "Unsupported platform: define MAX_VALID_FD for your OS"
+#endif
+
     // --- Constructors -------------------------------------------------------
     fd_wrapper() = default;
 
@@ -50,6 +65,7 @@ public:
 private:
     int fd = INVALID;
 
+    static bool is_valid_fd_value(int fd) noexcept;
     static bool close_fd(int fd) noexcept;
     static void log_close_failure() noexcept;
 };
