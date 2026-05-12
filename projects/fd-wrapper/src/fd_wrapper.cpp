@@ -44,6 +44,9 @@ bool fd_wrapper::is_valid_fd_value(int fd) noexcept {
 // -----------------------------------------------------------------------------
 
 fd_wrapper::fd_wrapper(const char* path) : fd(INVALID) {
+    if (path == nullptr) {
+        return;
+    }
     int result = ::open(path, O_RDONLY | O_CLOEXEC);
     if (is_valid_fd_value(result)) {
         fd = result;
@@ -133,6 +136,9 @@ int fd_wrapper::release() noexcept {
 }
 
 std::optional<fd_wrapper> fd_wrapper::open(const char* path) {
+    if (path == nullptr) {
+        return std::nullopt;
+    }
     int result = ::open(path, O_RDONLY | O_CLOEXEC);
     if (result < 0)
         return std::nullopt;
