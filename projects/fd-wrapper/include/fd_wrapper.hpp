@@ -29,7 +29,7 @@ public:
 #endif
 
     // --- Constructors -------------------------------------------------------
-    fd_wrapper() = default;
+    fd_wrapper() noexcept = default;
 
     /// Open by path (O_RDONLY | O_CLOEXEC). On failure, fd is INVALID check valid() and errno.
     explicit fd_wrapper(const char* path);

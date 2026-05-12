@@ -43,7 +43,7 @@ bool fd_wrapper::is_valid_fd_value(int fd) noexcept {
 // Constructors / destructor
 // -----------------------------------------------------------------------------
 
-fd_wrapper::fd_wrapper(const char* path) {
+fd_wrapper::fd_wrapper(const char* path) : fd(INVALID) {
     int result = ::open(path, O_RDONLY | O_CLOEXEC);
     if (is_valid_fd_value(result)) {
         fd = result;
@@ -56,7 +56,7 @@ fd_wrapper::fd_wrapper(const char* path) {
     }
 }
 
-fd_wrapper::fd_wrapper(int fd) noexcept {
+fd_wrapper::fd_wrapper(int fd) noexcept : fd(INVALID) {
     if (is_valid_fd_value(fd))
         this->fd = fd;
     else
