@@ -159,6 +159,28 @@ void fd_wrapper::swap(fd_wrapper& other) noexcept {
 }
 
 // -----------------------------------------------------------------------------
+// Duplication
+// -----------------------------------------------------------------------------
+
+std::optional<fd_wrapper> fd_wrapper::duplicate() const {
+    if (fd < 0) {
+        return std::nullopt;
+    }
+
+    int new_fd = ::fcntl(fd, F_DUPFD_CLOEXEC, 0);
+    if (new_fd < 0) {
+        return std::nullopt;
+    }
+
+    if (!is_valid_fd_value(new_fd)) {
+        close_fd(new_fd);
+        return std::nullopt;
+    }
+
+    return fd_wrapper(new_fd);
+}
+
+// -----------------------------------------------------------------------------
 // Non-member swap
 // -----------------------------------------------------------------------------
 
