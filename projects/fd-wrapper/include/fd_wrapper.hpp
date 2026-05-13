@@ -60,6 +60,10 @@ public:
     /// Factory: returns std::nullopt on open failure.
     [[nodiscard]] static std::optional<fd_wrapper> open(const char* path);
 
+    /// Duplicate this fd with close-on-exec set atomically.
+    /// Returns nullopt if fd is invalid or dup fails.
+    [[nodiscard]] std::optional<fd_wrapper> duplicate() const;
+    
     void swap(fd_wrapper& other) noexcept;
 
 private:
