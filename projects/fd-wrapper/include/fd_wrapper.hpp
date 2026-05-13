@@ -52,7 +52,7 @@ public:
 
     // --- Lifecycle ----------------------------------------------------------
     /// Close and set to INVALID. Logs to stderr on close failure.
-    void reset() noexcept;
+    bool reset() noexcept;
 
     /// Transfer ownership to caller, wrapper becomes empty. Caller must close or adopt.
     int release() noexcept;
