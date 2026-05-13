@@ -46,19 +46,19 @@ public:
     ~fd_wrapper() noexcept;
 
     // --- Accessors -----------------------------------------------------------
-    int get_fd() const noexcept;
-    bool valid() const noexcept;
+    [[nodiscard]] int get_fd() const noexcept;
+    [[nodiscard]] bool valid() const noexcept;
     explicit operator bool() const noexcept;
 
     // --- Lifecycle ----------------------------------------------------------
     /// Close and set to INVALID. Logs to stderr on close failure.
-    bool reset() noexcept;
+    [[nodiscard]] bool reset() noexcept;
 
     /// Transfer ownership to caller, wrapper becomes empty. Caller must close or adopt.
-    int release() noexcept;
+    [[nodiscard]] int release() noexcept;
 
     /// Factory: returns std::nullopt on open failure.
-    static std::optional<fd_wrapper> open(const char* path);
+    [[nodiscard]] static std::optional<fd_wrapper> open(const char* path);
 
     void swap(fd_wrapper& other) noexcept;
 

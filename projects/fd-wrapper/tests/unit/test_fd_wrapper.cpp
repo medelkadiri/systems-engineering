@@ -13,7 +13,7 @@ int main() {
     fd_wrapper g(raw);
     assert(g.valid());
     assert(g.get_fd() == raw);
-    g.reset();
+    (void)g.reset();
     assert(!g.valid());
 
     auto opt = fd_wrapper::open("/dev/null");
