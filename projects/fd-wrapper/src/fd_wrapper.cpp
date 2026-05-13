@@ -44,9 +44,6 @@ bool fd_wrapper::is_valid_fd_value(int fd) noexcept {
 // -----------------------------------------------------------------------------
 
 fd_wrapper::fd_wrapper(const char* path) : fd(INVALID) {
-    if (path == nullptr) {
-        return;
-    }
     int result = ::open(path, O_RDONLY | O_CLOEXEC);
     if (is_valid_fd_value(result)) {
         fd = result;
@@ -59,7 +56,7 @@ fd_wrapper::fd_wrapper(const char* path) : fd(INVALID) {
     }
 }
 
-fd_wrapper::fd_wrapper(int fd) noexcept : fd(INVALID) {
+fd_wrapper::fd_wrapper(int fd) noexcept {
     if (is_valid_fd_value(fd))
         this->fd = fd;
     else
@@ -121,12 +118,19 @@ fd_wrapper::operator bool() const noexcept {
 // Lifecycle
 // -----------------------------------------------------------------------------
 
-void fd_wrapper::reset() noexcept {
-    if (fd >= 0) {
-        if (!close_fd(fd))
-            log_close_failure();
-        fd = INVALID;
+bool fd_wrapper::reset() noexcept {
+    if (fd < 0) {
+        return true;
     }
+
+    int old_fd = fd;
+    fd = INVALID;
+
+    if (!close_fd(old_fd)) {
+        log_close_failure();
+        return false;
+    }
+    return true;
 }
 
 int fd_wrapper::release() noexcept {
@@ -136,9 +140,6 @@ int fd_wrapper::release() noexcept {
 }
 
 std::optional<fd_wrapper> fd_wrapper::open(const char* path) {
-    if (path == nullptr) {
-        return std::nullopt;
-    }
     int result = ::open(path, O_RDONLY | O_CLOEXEC);
     if (result < 0)
         return std::nullopt;
